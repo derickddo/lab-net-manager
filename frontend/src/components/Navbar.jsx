@@ -6,12 +6,12 @@ const Navbar = () => {
        "
       >
         <nav className="flex justify-between items-center">
-          <h1>LabNet Manger</h1>
+          <h1  className="text-white">LabNet Manger</h1>
           <ul className="flex gap-3">
-            <li>Home</li>
-            <li>Home</li>
-            <li>Home</li>
-            <li>Home</li>
+            <li className="text-white">Home</li>
+            <li  className="text-white">Home</li>
+            <li  className="text-white">Home</li>
+            <li  className="text-white">Home</li>
           </ul>
         </nav>
       </div>

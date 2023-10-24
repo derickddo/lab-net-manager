@@ -18,14 +18,16 @@ from django.db import models
 #     ip_assignment_method = models.CharField(max_length=20)  # Static or Dynamic
 
 # Computer Model
-# class Computer(models.Model):
-#     name = models.CharField(max_length=100)
-#     ip_address = models.GenericIPAddressField()
-#     mac_address = models.CharField(max_length=17)  # Assuming a standard MAC 
-#     status = models.CharField(max_length=20)  # In-use, Available, Offline, etc.
-#     specifications = models.TextField()
-#     network_details = models.OneToOneField(NetworkDetails, on_delete=models.SET_NULL, blank=True, null=True)
+class Computer(models.Model):
+    name = models.CharField(max_length=100, null=True)
+    ip_address = models.GenericIPAddressField()
+    mac_address = models.CharField(max_length=17)  # Assuming a standard MAC 
+    # status = models.CharField(max_length=20)  # In-use, Available, Offline, etc.
+    # specifications = models.TextField()
+    # network_details = models.OneToOneField(NetworkDetails, on_delete=models.SET_NULL, blank=True, null=True)
 
+    def __str__(self) -> str:
+        return self.ip_address
 
 # # Troubleshooting Ticket Model
 # class TroubleshootingTicket(models.Model):
