@@ -1,6 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Mohave&display=swap');
-
-
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -8,7 +6,7 @@
 
 @layer base {
     html {
-        font-family: 'Mohave', sans-serif;
+        font-family: 'Poppins', sans-serif;
     }
   }
 

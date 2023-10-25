@@ -1,20 +1,52 @@
-import Navbar from "../components/Navbar"
+import Aos from 'aos'
+import 'aos/dist/aos.css'
+import { useEffect, useState } from "react"
+import features from "../components/Features"
+import Feature from "../components/Feature"
+import HeroSection from '../components/HeroSection'
+
+
 const Home = () => {
+  const [Features] = useState(features)
+
+  useEffect(() =>{
+    Aos.init()
+  })
+  
   return (
-    
-    <div className="hero-section ">
-      <Navbar/>
-      <div className="h-[80vh] container">
-        <h1>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laudantium, qui.</h1>
-        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptate, accusamus dolore quidem nemo blanditiis quasi culpa nisi. Minima nemo tempore aperiam odit nesciunt.</p>
+    <>
+    {/* top section */}
+    <HeroSection/>
+
+    {/* features section */}
+    <div className="mb-24 dash">
+      <div className="container pt-80">
+        <h2 className="text-4xl font-bold text-center">Unleash the Power of Lab Management</h2>
+        <p className="mt-5 leading-7 text-lg text-gray-700 w-[60rem] mx-auto text-center">Discover a Suite of Features Designed to Revolutionize Your ICT Lab Administration. From Real-time Tracking to Automated Analysis, We have Got You Covered.</p>
+
+        {
+          Features.map((item, index) => (
+          <Feature 
+            key={index} 
+            title={item.title} 
+            description={item.description} 
+            image={item.image}
+            direction={item.direction}
+            fade_in={item.fade_left}
+            />
+          
+          ))
+        }
+      
       </div>
-      <div className="custom-shape-divider-bottom-1698170642">
-          <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
-              <path d="M600,112.77C268.63,112.77,0,65.52,0,7.23V120H1200V7.23C1200,65.52,931.37,112.77,600,112.77Z" className="shape-fill"></path>
-          </svg>
-      </div>   
       
     </div>
+
+    <div className="bg-black h-80">
+
+    </div>
+    </>
+    
 
    
    
