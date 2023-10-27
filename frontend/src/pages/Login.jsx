@@ -3,18 +3,21 @@ import { Link } from "react-router-dom"
 import Logo from '../assets/logo.png'
 
 import {FaGoogle} from 'react-icons/fa'
-import { useState } from "react"
+import { useContext, useState } from "react"
+import AuthContext from "../context/AuthContext"
 
 const Login = () => {
 
   const [signUp, setSignUp]  = useState(false)
+  const {loginUser} = useContext(AuthContext)
 
   return (
     <div className="bg-[rgba(2,0,36,0.99)] ">
         <div className="container lg:flex lg:justify-center lg:items-center  h-[100vh] overflow-auto">
             <div className="lg:w-[30rem] sm:w-full ">
             <Link to={'/'} className="lg:flex lg:justify-center hidden"><img className="lg:w-[18rem] w-[12rem] mb-6" src={Logo} alt="" /></Link>
-            <form action="" className="bg-white p-6 mt-20 lg:mt-0 rounded-md">
+            
+            <form onSubmit={loginUser} action="" className="bg-white p-6 mt-20 lg:mt-0 rounded-md">
                 <div className="mb-8">
                     <Typography variant="h4" color="blue-gray">
                         { 
@@ -29,6 +32,7 @@ const Login = () => {
                         <Typography variant="h6" color="blue-gray" className="mb-3">Full Name</Typography>
                         <Input
                             size="lg"
+                            name="name"
                             placeholder="John Doe"
                             className=" !border-t-blue-gray-200 focus:!border-t-[rgba(2,0,36,0.99)]"
                             labelProps={{
@@ -41,6 +45,7 @@ const Login = () => {
                     <Typography variant="h6" color="blue-gray" className="mb-3">Email</Typography>
                     <Input
                         size="lg"
+                        name="email"
                         placeholder="name@mail.com"
                         className=" !border-t-blue-gray-200 focus:!border-t-[rgba(2,0,36,0.99)]"
                         labelProps={{
@@ -55,6 +60,7 @@ const Login = () => {
                     <Input
                         type="password"
                         size="lg"
+                        name="password"
                         placeholder="********"
                         className=" !border-t-blue-gray-200 focus:!border-t-gray-900"
                         labelProps={{
@@ -83,13 +89,13 @@ const Login = () => {
                     />
                 </div>
                 <div className="mt-5">
-                    <Button fullWidth className="bg-[rgba(2,0,36,0.99)] h-[3rem]">
+                    <Button type="submit" fullWidth className="bg-[rgba(2,0,36,0.99)] h-[3rem]">
                         {
                             signUp ? 'sign up': ' sign in'
                         }
                        
                     </Button>
-                    <Button fullWidth className="bg-blue-700  h-[3rem] mt-3 flex items-center justify-center gap-[0.5rem]">
+                    <Button type="submit" fullWidth className="bg-blue-700  h-[3rem] mt-3 flex items-center justify-center gap-[0.5rem]">
                         <FaGoogle className="text-lg"/> 
                         <span>continue with google</span>
                     </Button>

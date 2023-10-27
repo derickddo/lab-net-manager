@@ -4,13 +4,16 @@ import Feature from "../components/Feature"
 import HeroSection from '../components/HeroSection'
 import About from '../components/About'
 import { Footer } from '../components/Footer'
-import { useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
+import AuthContext from '../context/AuthContext'
 
 
 const Home = () => {
   const [Features] = useState(features)
-
-  
+  let {name} = useContext(AuthContext)
+  useEffect(() =>{
+    console.log(name)
+  })
   return (
     <>
     {/* top section */}

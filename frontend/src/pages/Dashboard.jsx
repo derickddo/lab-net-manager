@@ -1,7 +1,12 @@
+import Sidebar from "../components/Sidebar"
+import DashboardCenter from "../components/DashboardCenter"
 
 const Dashboard = () => {
   return (
-    <div>Dashboard</div>
+    <div className="">
+        <Sidebar/>
+        <DashboardCenter/>
+    </div>
   )
 }
 
