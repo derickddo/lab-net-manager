@@ -10,6 +10,8 @@ django-cors-headers = "*"
 scapy = "*"
 netdisco = "*"
 python-nmap = "*"
+djangorestframework-simplejwt = "*"
+pillow = "*"
 
 [dev-packages]
 

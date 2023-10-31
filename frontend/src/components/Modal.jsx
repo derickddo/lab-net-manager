@@ -6,36 +6,39 @@ import {
   DialogBody,
   DialogFooter,
 } from "@material-tailwind/react";
- 
+
 // eslint-disable-next-line react/prop-types
-export function Modal({buttonName, title, children}) {
+export function Modal({ buttonName, title, children, state }) {
   const [open, setOpen] = useState(false);
- 
+
   const handleOpen = () => setOpen(!open);
- 
+
   return (
     <>
       <Button onClick={handleOpen} variant="gradient">
         {buttonName}
       </Button>
-      <Dialog className="" open={open} handler={handleOpen}>
+      <Dialog size="sm" open={open} handler={handleOpen}>
         <DialogHeader>{title}</DialogHeader>
-        <DialogBody>
-         {children}
-        </DialogBody>
-        <DialogFooter>
-          <Button
-            variant="text"
-            color="red"
-            onClick={handleOpen}
-            className="mr-1"
-          >
-            <span>Cancel</span>
-          </Button>
-          <Button variant="gradient" color="green" onClick={handleOpen}>
-            <span>Confirm</span>
-          </Button>
-        </DialogFooter>
+        <DialogBody>{children}</DialogBody>
+        {state && (
+          <DialogFooter>
+            <Button
+              variant="text"
+              color="red"
+              onClick={handleOpen}
+              className="mr-1">
+              <span>Cancel</span>
+            </Button>
+            <Button
+              type="submit"
+              variant="gradient"
+              color="green"
+              onClick={handleOpen}>
+              <span>Confirm</span>
+            </Button>
+          </DialogFooter>
+        )}
       </Dialog>
     </>
   );

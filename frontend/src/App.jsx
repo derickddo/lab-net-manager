@@ -5,6 +5,7 @@ import Aos from 'aos'
 import { useEffect } from "react"
 import { AuthProvider } from "./context/AuthContext"
 import Dashboard from "./pages/Dashboard"
+import PrivateRoutes from "./utils/PrivateRoutes"
 
 
 function App() {
@@ -18,7 +19,9 @@ function App() {
         <Routes>
           <Route path="/" element={<Home/>}/>
           <Route path="/login" element={<Login/>} />
-          <Route path="/dashboard" element={<Dashboard/>} />
+          <Route element={<PrivateRoutes/>}>
+            <Route path="/dashboard" element={<Dashboard/>} />
+          </Route>
         </Routes>
       </AuthProvider>
     </Router>

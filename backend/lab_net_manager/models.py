@@ -1,12 +1,20 @@
 from django.db import models
+from django.contrib.auth.models import AbstractUser
 
 # Create your models here.
 
 # User Model (if applicable)
-# class User(models.Model):
-#     name = models.CharField(max_length=100)
-#     role = models.CharField(max_length=20)  # Admin, Technician, User, etc.
-#     contact_info = models.TextField()
+class User(AbstractUser):
+    name = models.CharField(max_length=100)
+    email = models.EmailField(unique=True)
+    avatar = models.ImageField(null=True, default='avatar.png')
+    username = models.CharField(null=True, blank=True, max_length=10)
+    
+    USERNAME_FIELD = 'email'
+    REQUIRED_FIELDS = []
+
+    def __str__(self) -> str:
+        return f'{self.name} {self.username}'
 
 
 # Network Details Model

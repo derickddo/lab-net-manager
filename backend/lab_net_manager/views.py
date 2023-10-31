@@ -1,10 +1,12 @@
 from django.shortcuts import render
 from rest_framework.views import APIView
+from rest_framework import generics
 from rest_framework.response import Response
 from scapy.all import ARP , Ether, srp, DNS, sr1, DNSQR, IP, UDP
+from rest_framework_simplejwt.views import TokenObtainPairView
 
-from .serializers import ComputerSerializer
-from .models import Computer
+from .serializers import ComputerSerializer, MyTokenObtainPairSerializer, RegistrationSerializer
+from .models import Computer, User
 
 # Create your views here.
 def scan_network():
@@ -39,7 +41,10 @@ class NetworkScanView(APIView):
         return Response({'devices':serializer.data})
           
 
+class AuthView(TokenObtainPairView):
+    serializer_class = MyTokenObtainPairSerializer
 
 
-
-
+class RegisterView(generics.CreateAPIView):
+    queryset = User.objects.all()
+    serializer_class = RegistrationSerializer
