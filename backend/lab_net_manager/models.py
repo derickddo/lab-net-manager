@@ -29,13 +29,19 @@ class User(AbstractUser):
 class Computer(models.Model):
     name = models.CharField(max_length=100, null=True)
     ip_address = models.GenericIPAddressField()
-    mac_address = models.CharField(max_length=17)  # Assuming a standard MAC 
+    mac_address = models.CharField(max_length=17)  # Assuming a standard MAC
+    lab = models.ForeignKey('Lab', on_delete=models.CASCADE, related_name='computers') 
     # status = models.CharField(max_length=20)  # In-use, Available, Offline, etc.
     # specifications = models.TextField()
     # network_details = models.OneToOneField(NetworkDetails, on_delete=models.SET_NULL, blank=True, null=True)
 
     def __str__(self) -> str:
         return self.ip_address
+
+class Lab(models.Model):
+    name = models.CharField(max_length=20)
+    description = models.TextField(null= True, blank=True)
+    created = models.DateTimeField(auto_now_add=True)
 
 # # Troubleshooting Ticket Model
 # class TroubleshootingTicket(models.Model):

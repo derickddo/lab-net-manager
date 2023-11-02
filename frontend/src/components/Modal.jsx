@@ -1,4 +1,4 @@
-import { useState } from "react";
+
 import {
   Button,
   Dialog,
@@ -8,14 +8,17 @@ import {
 } from "@material-tailwind/react";
 
 // eslint-disable-next-line react/prop-types
-export function Modal({ buttonName, title, children, state }) {
-  const [open, setOpen] = useState(false);
+export function Modal({ buttonName, title, children, state, open, setOpen, setLab }) {
+  
 
-  const handleOpen = () => setOpen(!open);
+  const handleOpen = () => {
+    setLab(null)
+    setOpen(!open);
+  }
 
   return (
     <>
-      <Button onClick={handleOpen} variant="gradient">
+      <Button size="lg" onClick={handleOpen} variant="gradient">
         {buttonName}
       </Button>
       <Dialog size="sm" open={open} handler={handleOpen}>

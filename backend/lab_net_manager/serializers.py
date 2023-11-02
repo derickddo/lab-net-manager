@@ -1,8 +1,9 @@
 import urllib.parse
 from rest_framework import serializers
-from .models import Computer, User
+from .models import Computer, User, Lab
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 from django.contrib.auth.password_validation import validate_password
+from django.shortcuts import get_list_or_404
 
 class ComputerSerializer(serializers.ModelSerializer):
     class Meta:
@@ -47,3 +48,12 @@ class RegistrationSerializer(serializers.ModelSerializer):
         user.set_password(validated_data['password'])
         user.save()
         return user
+
+class LabSerializer(serializers.ModelSerializer):
+    devices = serializers.SerializerMethodField()
+    class Meta:
+        model = Lab
+        fields = ['id', 'name', 'description', 'created', 'devices']
+    
+    def get_devices(self, lab):
+       return lab.computers.count()

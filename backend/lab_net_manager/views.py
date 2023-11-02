@@ -1,12 +1,11 @@
-from django.shortcuts import render
 from rest_framework.views import APIView
 from rest_framework import generics
 from rest_framework.response import Response
 from scapy.all import ARP , Ether, srp, DNS, sr1, DNSQR, IP, UDP
 from rest_framework_simplejwt.views import TokenObtainPairView
 
-from .serializers import ComputerSerializer, MyTokenObtainPairSerializer, RegistrationSerializer
-from .models import Computer, User
+from .serializers import ComputerSerializer, MyTokenObtainPairSerializer, RegistrationSerializer, LabSerializer
+from .models import Computer, User, Lab
 
 # Create your views here.
 def scan_network():
@@ -48,3 +47,23 @@ class AuthView(TokenObtainPairView):
 class RegisterView(generics.CreateAPIView):
     queryset = User.objects.all()
     serializer_class = RegistrationSerializer
+
+class LabView(generics.ListCreateAPIView):
+    queryset = Lab.objects.all()
+    serializer_class = LabSerializer
+    
+class GetLabView(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Lab.objects.all()
+    serializer_class = LabSerializer
+
+class LabDataView(APIView):
+    def get(self, request):
+        labs = Lab.objects.all()
+        serializer = LabSerializer(labs, many=True)
+    
+        # Extract data for the chart
+        chart_data = {
+            'labels': [lab['name'] for lab in serializer.data],
+            'deviceCount': [lab['devices'] for lab in serializer.data],
+        }
+        return Response(chart_data)
