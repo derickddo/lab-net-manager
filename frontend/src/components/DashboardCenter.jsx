@@ -54,7 +54,7 @@ const DashboardCenter = () => {
         setSpin={setSpin}
         spin={spin}
         isDelete={isDelete}
-        logoutUser={logoutUser}
+        logoutUser={logoutUser()}
         user={user}
         open={open}
       />

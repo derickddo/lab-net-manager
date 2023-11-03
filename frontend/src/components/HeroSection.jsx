@@ -3,7 +3,7 @@ import Dash from '../assets/Summary.png'
 
 const HeroSection = () => {
   return (
-    <div className="hero-section">
+    <div className="hero-section mb-6">
       <Navbar/>
       <div className="container h-[60vh] lg:h-[100vh] flex flex-col">
         <div className="mt-[3rem] lg:mt-[10rem] fade-left">

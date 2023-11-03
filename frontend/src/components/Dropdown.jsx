@@ -10,8 +10,8 @@ const Dropdown = ({ options, logoutUser, cardDropdown, element, item, setOpen, s
 
   const handleOptionClick = (option) => {
     setLab(item);
-    if(option === 'logout'){
-      logoutUser()
+    if(option === 'Logout'){
+      logoutUser
     }
     else if (option === 'Delete'){
       setIsDelete(true)
