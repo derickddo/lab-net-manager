@@ -17,7 +17,7 @@ const Login = () => {
 
   return (
     <div className="bg-[rgba(2,0,36,0.99)] ">
-        <div className="flex lg:justify-center  px-5 lg:px-0 items-center h-[100vh] overflow-auto">
+        <div className="flex lg:justify-center  px-5 lg:px-0 items-center h-[120vh] overflow-auto">
             <div className="lg:w-[30rem] w-full ">
             <Link to={'/'} className="lg:flex lg:justify-center hidden"><img className="lg:w-[18rem] w-[12rem] mb-6" src={Logo} alt="" /></Link>
             
