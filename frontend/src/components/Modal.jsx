@@ -18,7 +18,7 @@ export function Modal({ buttonName, title, children, state, open, setOpen, setLa
 
   return (
     <>
-      <Button size="lg" onClick={handleOpen} variant="gradient">
+      <Button size="md" onClick={handleOpen} variant="gradient">
         {buttonName}
       </Button>
       <Dialog size="sm" open={open} handler={handleOpen}>

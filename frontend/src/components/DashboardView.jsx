@@ -2,8 +2,12 @@ import LabComponent from "./LabComponent";
 import PropTypes from "prop-types";
 import LineChart from "./LineChart";
 import BarChart from "./BarChart";
+import { useContext } from "react";
+import { PropContext } from "../context/propContext";
 
-const DashboardView = ({ labs, setLab, setOpen, setIsDelete, chartData, setVisitLab }) => {
+const DashboardView = () => {
+  let { labs, setLab, setOpen, setIsDelete, chartData } =
+    useContext(PropContext);
   return (
     <div className="bg-gray-100 h-[100vh] overflow-auto pt-[2rem]">
       <div className="w-[95%] mx-auto">
@@ -16,7 +20,6 @@ const DashboardView = ({ labs, setLab, setOpen, setIsDelete, chartData, setVisit
               setLab={setLab}
               setOpen={setOpen}
               setIsDelete={setIsDelete}
-              setVisitLab= {setVisitLab}
             />
           ))}
         </div>
@@ -39,6 +42,5 @@ DashboardView.propTypes = {
   setOpen: PropTypes.func,
   setIsDelete: PropTypes.func,
   chartData: PropTypes.object,
-  setVisitLab: PropTypes.func
 };
 export default DashboardView;

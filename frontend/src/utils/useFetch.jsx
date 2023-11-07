@@ -5,7 +5,7 @@ import dayjs from "dayjs";
 
 const useFetch = () => {
   let config = {};
-  let { authTokens, setAuthTokens, setUser } = useContext(AuthContext);
+  let {authTokens, setAuthTokens, setUser} = useContext(AuthContext);
   let baseURL = "http://127.0.0.1:8000/";
 
   let originalRequest = async (url, config) => {

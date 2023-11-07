@@ -1,17 +1,21 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import PropTypes from 'prop-types'
+import { PropContext } from '../context/propContext';
+import AuthContext from '../context/AuthContext';
 
 // eslint-disable-next-line react/prop-types
-const Dropdown = ({ options, logoutUser, cardDropdown, element, item, setOpen, setLab, setIsDelete }) => {
+const Dropdown = ({ options, cardDropdown, children, item }) => {
   const [isOpen, setIsOpen] = useState(false);
   const toggleDropdown = () => {
     setIsOpen(!isOpen);
   };
+   let {setOpen, setLab, setIsDelete} = useContext(PropContext)
+   const {logoutUser} = useContext(AuthContext)
 
   const handleOptionClick = (option) => {
     setLab(item);
     if(option === 'Logout'){
-      logoutUser
+      logoutUser()
     }
     else if (option === 'Delete'){
       setIsDelete(true)
@@ -33,22 +37,22 @@ const Dropdown = ({ options, logoutUser, cardDropdown, element, item, setOpen, s
           onClick={toggleDropdown}
           type="button"
           className={`${
-            !cardDropdown ?
-            "inline-flex w-full rounded-md border border-gray-300 shadow-sm px-4 py-1 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-indigo-800" : 'float-right'
+            !cardDropdown
+              ? "inline-flex w-full rounded-md border border-gray-300 shadow-sm px-4 py-1 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-indigo-800"
+              : "float-right"
           }`}
           id="options-menu"
           aria-haspopup="listbox"
           aria-expanded="true"
           aria-labelledby="options-menu">
-          {element}
+          {children}
         </button>
       </div>
 
       {isOpen && (
         <div
-          className={`origin-top-right absolute right-0 mt-6 ${
-            !cardDropdown ? "w-56": 'w-32'
-
+          className={`origin-top-right absolute right-0 mt-3 ${
+            !cardDropdown ? "w-56" : "w-32 mt-[3.3rem]"
           } rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none`}>
           <div
             className="py-1"

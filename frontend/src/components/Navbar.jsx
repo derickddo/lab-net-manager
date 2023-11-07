@@ -36,19 +36,19 @@ const Navbar = () => {
        ">
         <nav className="flex justify-between items-center">
           <Link to={"/"}>
-            <img className="w-48 lg:w-64" src={Logo} alt="" />
+            <img className="w-40 lg:w-64" src={Logo} alt="" />
           </Link>
           <ul
             className={`${
               showMobileNavbar ? "block md:block" : "hidden md:hidden"
-            } rounded-md z-20 shadow-lg p-4 bg-white w-[20rem] flex-col absolute right-[4%] md:rigth[10%] mt-[20rem] lg:flex lg:static lg:flex-row lg:mt-0 lg:bg-inherit gap-[2rem] dash`}>
-            <li className="lg:text-white text-black py-3 spy-3 cursor-pointer transition-all hover:bg-[rgba(2,0,36,0.99)] hover:text-white rounded-md pl-3">
+            } rounded-md z-20 shadow-lg lg:shadow-transparent p-4 bg-white w-[20rem] flex-col absolute right-[4%] md:rigth[10%] mt-[20rem] lg:flex lg:static lg:flex-row lg:mt-0 lg:bg-inherit gap-[2rem] dash`}>
+            <li className="lg:text-white text-black py-3 cursor-pointer transition-all hover:bg-[rgba(2,0,36,0.99)] lg:hover:bg-inherit hover:text-white rounded-md pl-3">
               <Link to={"/"}>Home</Link>
             </li>
-            <li className="lg:text-white text-black py-3 cursor-pointer transition-all hover:bg-[rgba(2,0,36,0.99)] hover:text-white rounded-md pl-3">
+            <li className="lg:text-white text-black py-3 cursor-pointer transition-all hover:bg-[rgba(2,0,36,0.99)] hover:text-white rounded-md pl-3 lg:hover:bg-inherit">
               <Link to={"/about"}>About</Link>
             </li>
-            <li className="lg:text-white text-black py-3 transition-all cursor-pointer hover:bg-[rgba(2,0,36,0.99)] hover:text-white rounded-md pl-3">
+            <li className="lg:text-white text-black py-3 transition-all cursor-pointer hover:bg-[rgba(2,0,36,0.99)] hover:text-white rounded-md pl-3 lg:hover:bg-inherit">
               <Link to={"/contact"}>Contact</Link>
             </li>
 
@@ -63,7 +63,8 @@ const Navbar = () => {
             color="white"
             ripple={false}
             className="string hidden lg:block">
-            <a href="#"
+            <a
+              href="#"
               onClick={() => {
                 if (user) {
                   navigate("/dashboard");

@@ -1,13 +1,14 @@
-import Sidebar from "../components/Sidebar"
-import DashboardCenter from "../components/DashboardCenter"
+import Sidebar from "../components/Sidebar";
+import DashboardCenter from "../components/DashboardCenter";
 
-const Dashboard = () => {
+// eslint-disable-next-line react/prop-types
+const Dashboard = ({ children }) => {
   return (
     <div className="">
-        <Sidebar/>
-        <DashboardCenter/>
+      <Sidebar />
+      <DashboardCenter>{children}</DashboardCenter>
     </div>
-  )
-}
+  );
+};
 
-export default Dashboard
+export default Dashboard;

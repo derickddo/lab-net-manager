@@ -14,7 +14,7 @@ const Sidebar = () => {
       icon: <AiOutlinePlusSquare className="text-xl" />,
     },
     { title: "Settings", icon: <IoSettingsOutline className="text-xl" /> },
-    { title: "Nav 1" },
+    
   ];
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const handleSidebarItemClick = (index) => {
@@ -23,7 +23,7 @@ const Sidebar = () => {
   const [activeItem, setActiveItem] = useState(null);
   
   return (
-    <div className="h-[100vh] w-[15%] fixed left-0 ">
+    <div className="h-[100vh] w-[18%] fixed left-0 ">
       <div className="h-[5rem] flex items-center px-[2rem] border-b border-b-gray-300">
         <Link to={"/"}>
           <img className="w-[18rem]" src={Logo} alt="" />

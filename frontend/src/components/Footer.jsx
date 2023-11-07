@@ -18,7 +18,7 @@ export const Footer = () => {
                         
                         <Link className="text-gray-500">Terms of Service</Link>
                     </li>
-                    <li className="flex mt-10 lg:mt-0 flex-row gap-5">
+                    <li className="grid mt-10 lg:mt-0 grid-cols-3 gap-5">
                         <Link><BsInstagram className="text-white text-2xl"/></Link>
                         <Link><BsTwitter className="text-white text-2xl"/></Link>
                         <Link><BsFacebook className="text-white text-2xl"/></Link>

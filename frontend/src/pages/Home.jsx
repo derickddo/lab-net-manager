@@ -20,10 +20,10 @@ const Home = () => {
     <HeroSection/>
 
     {/* features section */}
-    <div className="mb-24">
+    <div className="mb-24 mt-[6rem] lg:mt-[12rem]">
       <div className="container">
-        <h2 className="text-3xl mt-40 lg:mt-72 lg:text-4xl font-bold text-center">Unleash the Power of Lab Management</h2>
-        <p className="mt-5 leading-7 lg:text-lg text-gray-700  w-full lg:w-[60rem] mx-auto text-center">Discover a Suite of Features Designed to Revolutionize Your ICT Lab Administration. From Real-time Tracking to Automated Analysis, We have Got You Covered.</p>
+        <h2 className="text-2xl lg:text-4xl font-bold text-center">Unleash the Power of Lab Management</h2>
+        <p className="mt-5 leading-7 lg:text-lg text-gray-700  w-full lg:w-[40rem] mx-auto text-center">Discover a Suite of Features Designed to Revolutionize Your ICT Lab Administration. </p>
 
         {
           Features.map((item, index) => (
