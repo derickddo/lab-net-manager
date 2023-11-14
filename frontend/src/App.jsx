@@ -26,7 +26,6 @@ function App() {
         setLabs(data);
       }
     };
-
     getLabs();
   }, [setLabs, lab]);
 
@@ -38,7 +37,7 @@ function App() {
       }
     };
     getLabData();
-  }, [setLabs, lab]);
+  }, [lab, setChartData, setLabs]);
 
   return (
     <Routes>

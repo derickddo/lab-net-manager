@@ -22,6 +22,7 @@ const LabComponent = ({ item, setLab}) => {
         <div className="w-full mb-8 relative">
           <Dropdown
             item={item}
+            modify={true}
             options={["Edit", "Delete"]}
             cardDropdown={true}>
             <div className="w-full float-right">

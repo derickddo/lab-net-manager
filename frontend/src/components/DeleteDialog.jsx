@@ -4,21 +4,31 @@ import { Button } from "@material-tailwind/react";
 import ButtonWithSpinner from "./ButtonWithSpinner";
 import useFetch from "../utils/useFetch";
 import swal from "sweetalert2";
+import { useContext } from "react";
+import { PropContext } from "../context/propContext";
+import { useNavigate } from "react-router-dom";
 
 // eslint-disable-next-line react/prop-types
-const DeleteDialog = ({ name, spin, setOpen, lab, setSpin, setLab }) => {
+const DeleteDialog = ({ setOpen, lab }) => {
+  let { spin, setSpin, setLab, setLabs } = useContext(PropContext);
   const api = useFetch();
-
+  const navigate = useNavigate();
   const handleSubmit = async (e) => {
     setSpin(true);
     e.preventDefault();
     let method = "DELETE";
+
     let url = `api/labs/${lab.id}`;
-    const {response, data} = await api(url, method);
-    console.log(data, response)
-    if(response.status === 204) {
+    const { response } = await api(url, method);
+    console.log(response);
+    if (response.status === 204) {
+      setLabs((previous) =>
+        previous.filter((prevLab) => lab.id !== prevLab.id)
+      );
       setLab(null);
+      setSpin(false);
       setOpen(false);
+      navigate("/dashboard");
       swal.fire({
         title: `${lab.name} successfully Deleted`,
         icon: "success",
@@ -38,6 +48,7 @@ const DeleteDialog = ({ name, spin, setOpen, lab, setSpin, setLab }) => {
         timerProgressBar: true,
         showConfirmButton: false,
       });
+      setLab(null);
     }
   };
   return (
@@ -47,7 +58,7 @@ const DeleteDialog = ({ name, spin, setOpen, lab, setSpin, setLab }) => {
       <div className="">
         <CiCircleAlert className="text-8xl text-gray-300" />
       </div>
-      <p>Are you sure you want to delete {name}</p>
+      <p>Are you sure you want to delete {lab?.name}</p>
       <div className="mt-5 flex gap-5">
         <ButtonWithSpinner color={"green"} spin={spin}>
           Delete
@@ -65,11 +76,6 @@ const DeleteDialog = ({ name, spin, setOpen, lab, setSpin, setLab }) => {
   );
 };
 DeleteDialog.propTypes = {
-  name: PropTypes.string,
-  spin: PropTypes.bool,
-  setSpin: PropTypes.func,
-  setLab: PropTypes.func,
   lab: PropTypes.object,
-  setOpen: PropTypes.func,
 };
 export default DeleteDialog;

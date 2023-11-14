@@ -9,10 +9,10 @@ const DashboardView = () => {
   let { labs, setLab, setOpen, setIsDelete, chartData } =
     useContext(PropContext);
   return (
-    <div className="bg-gray-100 h-[100vh] overflow-auto pt-[2rem]">
+    <div className="bg-gray-100 h-full pt-[2rem]">
       <div className="w-[95%] mx-auto">
         <h3 className="text-3xl font-bold">Available Labs.</h3>
-        <div className="grid grid-cols-3 gap-5">
+        <div className="grid  2xl:grid-cols-3  md:grid-cols-2 gap-5">
           {labs.map((item) => (
             <LabComponent
               key={item.id}

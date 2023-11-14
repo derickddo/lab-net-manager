@@ -11,8 +11,13 @@ const useFetch = () => {
   let originalRequest = async (url, config) => {
     url = `${baseURL}${url}`;
     let response = await fetch(url, config);
-    let data = await response.json();
-    return { response, data };
+    if (config['method'] !== 'DELETE'){
+      let data = await response.json();
+      return { response, data };
+    }
+    else{
+      return {response}
+    }
   };
 
   let refreshToken = async (authTokens) => {

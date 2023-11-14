@@ -1,19 +1,18 @@
-import { Button, Input, Typography, Checkbox } from "@material-tailwind/react"
-import { Link } from "react-router-dom"
-import Logo from '../assets/logo.png'
-import {Spinner} from '@material-tailwind/react'
-import {FaGoogle} from 'react-icons/fa'
-import { useContext, useState } from "react"
-import AuthContext from "../context/AuthContext"
+import { Button, Input, Typography, Checkbox } from "@material-tailwind/react";
+import { Link } from "react-router-dom";
+import Logo from "../assets/logo.png";
+import { Spinner } from "@material-tailwind/react";
+import { FaGoogle } from "react-icons/fa";
+import { useContext, useState } from "react";
+import AuthContext from "../context/AuthContext";
 
 const Login = () => {
-
- 
-  const {loginUser, registerUser, signUp, setSignUp, spin} = useContext(AuthContext)
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
-  const [password2, setPassword2] = useState('')
-  const [fullname, setFullName] = useState('')
+  const { loginUser, registerUser, signUp, setSignUp, spin } =
+    useContext(AuthContext);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [password2, setPassword2] = useState("");
+  const [fullname, setFullName] = useState("");
 
   return (
     <div className="bg-[rgba(2,0,36,0.99)] min-h-screen">
@@ -45,7 +44,7 @@ const Login = () => {
             </div>
             {signUp && (
               <div className="mb-5">
-                <Typography variant="h6" color="blue-gray" className="mb-3">
+                <Typography variant="h6" color="blue-gray" className="mb-2">
                   Full Name
                 </Typography>
                 <Input
@@ -62,7 +61,7 @@ const Login = () => {
               </div>
             )}
             <div className="mb-5">
-              <Typography variant="h6" color="blue-gray" className="mb-3">
+              <Typography variant="h6" color="blue-gray" className="mb-2">
                 Email
               </Typography>
               <Input
@@ -78,7 +77,7 @@ const Login = () => {
               />
             </div>
             <div className="">
-              <Typography variant="h6" color="blue-gray" className="mb-3">
+              <Typography variant="h6" color="blue-gray" className="mb-2">
                 Password
               </Typography>
               <Input
@@ -96,7 +95,7 @@ const Login = () => {
             </div>
             {signUp && (
               <div className="mt-5">
-                <Typography variant="h6" color="blue-gray" className="mb-3">
+                <Typography variant="h6" color="blue-gray" className="mb-2">
                   Confirm password
                 </Typography>
                 <Input
@@ -113,7 +112,7 @@ const Login = () => {
                 />
               </div>
             )}
-            <div className="mt-5">
+            <div className="mt-2">
               <Checkbox
                 label={
                   <Typography
@@ -133,15 +132,16 @@ const Login = () => {
             </div>
             <div className="mt-5">
               <Button
+                size="lg"
                 type="submit"
                 fullWidth
-                className="bg-[rgba(2,0,36,0.99)] h-[3rem] flex justify-center">
+                className="bg-[rgba(2,0,36,0.99)] flex justify-center">
                 {spin ? <Spinner /> : `${signUp ? "sign up" : " sign in"}`}
               </Button>
               <Button
-                type=""
+                size="lg"
                 fullWidth
-                className="bg-blue-700  h-[3rem] mt-3 flex items-center justify-center gap-[0.5rem]">
+                className="bg-blue-700   mt-4 flex items-center justify-center gap-[0.5rem]">
                 <FaGoogle className="text-lg" />
                 <span>continue with google</span>
               </Button>
@@ -185,6 +185,6 @@ const Login = () => {
       </div>
     </div>
   );
-}
+};
 
-export default Login
+export default Login;

@@ -1,15 +1,19 @@
 import PropTypes from "prop-types";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import useFetch from "../utils/useFetch";
 import { useParams } from "react-router-dom";
 import { BsThreeDots } from "react-icons/bs";
 import Dropdown from "./Dropdown";
-import { Button } from "@material-tailwind/react";
-import PC from '../assets/pc.svg'
+import { Spinner } from "@material-tailwind/react";
+import PC from "../assets/pc.svg";
+import { PropContext } from "../context/propContext";
+import { Modal } from "./Modal";
+import AddDeviceForm from "../forms/AddDeviceForm";
+
 
 const LabView = () => {
-  let [lab, setLab] = useState(null);
-  const [devices, setDevices] = useState([]);
+  let {lab, setLab} = useContext(PropContext);
+  const [devices, ] = useState([])
   const api = useFetch();
   let { id } = useParams();
   useEffect(() => {
@@ -20,13 +24,17 @@ const LabView = () => {
       }
     };
     getLab();
-  }, []);
+  }, [id, setLab]);
 
   return (
-    <div className="w-[95%] mx-auto mt-[2.5rem] grid grid-cols-6 gap-10">
-      <div className="col-span-5">
+    <div className="w-[95%] mx-auto mt-[2.5rem]  gap-10">
+      <div className="">
         <div className="border border-gray-300 relative">
-          <Dropdown options={["Edit", "Delete"]} item={lab} cardDropdown={true}>
+          <Dropdown
+            modify={true}
+            options={["Edit", "Delete"]}
+            item={lab}
+            cardDropdown={true}>
             <div className="w-full float-right p-3">
               <BsThreeDots className="float-right text-black cursor-pointer h-[2rem] w-[2rem] p-2 hover:bg-gray-300 rounded-full" />
             </div>
@@ -70,19 +78,26 @@ const LabView = () => {
             </div>
           ) : (
             <div className="flex justify-center flex-col h-[35rem] items-center">
-              <img className="w-[10rem]" src={PC} alt="" />
-              <p>No devices</p>
-              <div className="mt-[1rem] flex gap-5">
-                <Button>+ Add device</Button>
-                <Button>Scan for devices</Button>
+              <img className="w-[20rem]" src={PC} alt="" />
+              <p className="text-center mt-3">No devices</p>
+              <div className="mt-[2rem] flex gap-5">
+                <Modal
+                  state={false}
+                  isButton={true}
+                  buttonName={"+ Add device"}
+                  title={"Add a device"}>
+                  <AddDeviceForm />
+                </Modal>
+
+                <Modal isButton={true} buttonName={"scan for devices"}>
+                  <div className="flex justify-center items-center">
+                    <Spinner />
+                  </div>
+                </Modal>
               </div>
             </div>
           )}
         </div>
-      </div>
-
-      <div className="border border-gray-300 min-h-[80vh] p-3">
-        <h1>Hello</h1>
       </div>
     </div>
   );

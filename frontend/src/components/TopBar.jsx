@@ -7,48 +7,21 @@ import Dropdown from "./Dropdown";
 import { Avatar } from "@material-tailwind/react";
 import PropTypes from "prop-types";
 import { useContext } from "react";
-import { PropContext } from "../context/propContext";
 import AuthContext from "../context/AuthContext";
 
 const TopBar = () => {
-  let { setLabs, spin, isDelete, setLab, setOpen, lab, setSpin, open } =
-    useContext(PropContext);
-
-  const {user } = useContext(AuthContext);
+  const { user } = useContext(AuthContext);
 
   return (
     <div className="h-[5rem] sticky bg-white top-0 z-10 border-b border-b-gray-300">
       <div className="w-[95%] flex justify-between  items-center h-full mx-auto">
         <div className="flex gap-5 items-center">
           <Modal
-            open={open}
-            setOpen={setOpen}
             state={false}
+            isButton={true}
             buttonName={"create a lab"}
-            setLab={setLab}
-            title={`${
-              !isDelete ? (!lab ? "Create a lab" : "Update Lab") : ""
-            }`}>
-            {!isDelete ? (
-              <LabForm
-                spin={spin}
-                setLabs={setLabs}
-                setSpin={setSpin}
-                open={open}
-                lab={lab}
-                setLab={setLab}
-                setOpen={setOpen}
-              />
-            ) : (
-              <DeleteDialog
-                name={lab?.name}
-                lab={lab}
-                setOpen={setOpen}
-                spin={spin}
-                setSpin={setSpin}
-                setLab={setLab}
-              />
-            )}
+            title="Create a lab">
+            <LabForm /> 
           </Modal>
           <div className="">
             <Input className="w-[30rem]" label="search" type="text" size="lg" />

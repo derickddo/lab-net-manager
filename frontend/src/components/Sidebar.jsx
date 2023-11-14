@@ -23,13 +23,13 @@ const Sidebar = () => {
   const [activeItem, setActiveItem] = useState(null);
   
   return (
-    <div className="h-[100vh] w-[18%] fixed left-0 ">
+    <div className="h-[100vh] w-[15%] fixed left-0 ">
       <div className="h-[5rem] flex items-center px-[2rem] border-b border-b-gray-300">
         <Link to={"/"}>
           <img className="w-[18rem]" src={Logo} alt="" />
         </Link>
       </div>
-      <div className="px-[1rem] flex flex-col justify-between pt-10 border-r border-r-gray-300 h-[92vh]">
+      <div className="px-[0.8rem] flex flex-col justify-between py-10 border-r border-r-gray-300 h-[92vh]">
         <ul className=" flex flex-col gap-5 ">
           {navigationData.map((item, index) => (
             <li
@@ -43,8 +43,8 @@ const Sidebar = () => {
             </li>
           ))}
         </ul>
-        <div className="bg-[rgba(2,0,36,0.1)] border border-[rgba(2,0,36,0.99)] p-5 mb-5 rounded-md">
-          <BsFillRocketTakeoffFill className="text-2xl mb-3" />
+        <div className="bg-[rgba(2,0,36,0.1)] border border-[rgba(2,0,36,0.99)] p-5  rounded-md">
+          <BsFillRocketTakeoffFill className="text-2xl" />
           <span className="text-sm">
             Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptatum
             modi{" "}

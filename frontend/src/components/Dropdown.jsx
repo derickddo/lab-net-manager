@@ -1,29 +1,26 @@
-import { useContext, useState } from 'react';
-import PropTypes from 'prop-types'
-import { PropContext } from '../context/propContext';
-import AuthContext from '../context/AuthContext';
+import { useContext, useState } from "react";
+import PropTypes from "prop-types";
+import { PropContext } from "../context/propContext";
+import AuthContext from "../context/AuthContext";
+import { Modal } from "./Modal";
+import DeleteDialog from "./DeleteDialog";
+import LabForm from "../forms/LabForm";
 
 // eslint-disable-next-line react/prop-types
-const Dropdown = ({ options, cardDropdown, children, item }) => {
+const Dropdown = ({ options, cardDropdown, children, item, modify }) => {
   const [isOpen, setIsOpen] = useState(false);
   const toggleDropdown = () => {
     setIsOpen(!isOpen);
   };
-   let {setOpen, setLab, setIsDelete} = useContext(PropContext)
-   const {logoutUser} = useContext(AuthContext)
+  let {setLab} = useContext(PropContext);
+  const { logoutUser } = useContext(AuthContext);
 
   const handleOptionClick = (option) => {
     setLab(item);
-    if(option === 'Logout'){
-      logoutUser()
-    }
-    else if (option === 'Delete'){
-      setIsDelete(true)
-      setOpen(true);
-    }
-    else if(option === 'Edit'){
-      setOpen(true)
-    }
+    if (option === "Logout") {
+      logoutUser();
+    } 
+    
     setIsOpen(false);
   };
 
@@ -59,15 +56,26 @@ const Dropdown = ({ options, cardDropdown, children, item }) => {
             role="menu"
             aria-orientation="vertical"
             aria-labelledby="options-menu">
-            {options.map((option) => (
-              <div
-                key={option}
-                onClick={() => handleOptionClick(option)}
-                className="block px-4 py-2 cursor-pointer text-sm text-gray-700 hover:bg-[rgba(2,0,36,0.99)] hover:text-white"
-                role="menuitem">
-                {option}
+            {!modify ? (
+              options.map((option) => (
+                <div
+                  key={option}
+                  onClick={() => handleOptionClick(option)}
+                  className="block px-4 py-2 cursor-pointer text-sm text-gray-700 hover:bg-[rgba(2,0,36,0.99)] hover:text-white"
+                  role="menuitem">
+                  {option}
+                </div>
+              ))
+            ) : (
+              <div>
+                <Modal item={item} state={false} title={"Edit"} buttonName={options[0]}>
+                  <LabForm />
+                </Modal>
+                <Modal item={item} state={false}  buttonName={options[1]}>
+                  <DeleteDialog/>
+                </Modal>
               </div>
-            ))}
+            )}
           </div>
         </div>
       )}
@@ -78,7 +86,6 @@ const Dropdown = ({ options, cardDropdown, children, item }) => {
 export default Dropdown;
 
 Dropdown.propTypes = {
-    options: PropTypes.array,
-    item: PropTypes.object
-    
-}
+  options: PropTypes.array,
+  item: PropTypes.object,
+};
